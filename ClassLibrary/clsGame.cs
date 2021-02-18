@@ -4,6 +4,7 @@ namespace ClassLibrary
 {
     public class clsGame
     {
+        public int GameId { get; set; }
         public string GameTitle { get; set; }
         public bool InStock { get; set; }
         public DateTime ReleaseDate { get; set; }

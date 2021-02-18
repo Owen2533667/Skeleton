@@ -24,6 +24,15 @@ namespace Testing2
         }
 
         [TestMethod]
+        public void GameIdOK()
+        {
+            clsGame AGame = new clsGame();
+            int TestData = 1;
+            AGame.GameId = TestData;
+            Assert.AreEqual(AGame.GameId, TestData);
+        }
+
+        [TestMethod]
         public void GameTitleOK()
         {
             clsGame AGame = new clsGame();
@@ -37,8 +46,8 @@ namespace Testing2
         {
             clsGame AGame = new clsGame();
             Boolean TestData = true;
-            AGame.inStock = TestData;
-            Assert.AreEqual(AGame.inStock, TestData);
+            AGame.InStock = TestData;
+            Assert.AreEqual(AGame.InStock, TestData);
         }
 
         [TestMethod]
