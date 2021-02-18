@@ -5,7 +5,7 @@ namespace ClassLibrary
     public class clsGame
     {
         public string GameTitle { get; set; }
-        public bool inStock { get; set; }
+        public bool InStock { get; set; }
         public DateTime ReleaseDate { get; set; }
         public decimal Price { get; set; }
         public int StockQuantity { get; set; }
