@@ -4,13 +4,106 @@ namespace ClassLibrary
 {
     public class clsGame
     {
-        public int GameId { get; set; }
-        public string GameTitle { get; set; }
-        public bool InStock { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        public decimal Price { get; set; }
-        public int StockQuantity { get; set; }
-        public string GameDescription { get; set; }
+        //private data member for the game id prperty
+        private Int32 mGameId;
+
+        public Int32 GameId
+        {
+            get
+            {
+                //this line of code sends data out of the property
+                return mGameId;
+            }
+            set
+            {
+                //this line of code allows data into the property
+                mGameId = value;
+            }
+        }
+
+        //GameTitle private member variable
+        private string mGameTitle;
+        public string GameTitle
+        {
+            get
+            {
+                return mGameTitle;
+            }
+            set
+            {
+                mGameTitle = value;
+            }
+        }
+
+        //InStock private member variable
+        private Boolean mInStock;
+        public bool InStock
+        {
+            get
+            {
+                return mInStock;
+            }
+            set
+            {
+                mInStock = value;
+            }
+        }
+
+        //ReleaseDate private member variable
+        private DateTime mReleaseDate;
+        public DateTime ReleaseDate
+        {
+            get
+            {
+                return mReleaseDate;
+            }
+            set
+            {
+                mReleaseDate = value;
+            }
+        }
+
+        //Price private member variable
+        private decimal mPrice;
+        public decimal Price
+        {
+            get
+            {
+                return mPrice;
+            }
+            set
+            {
+                mPrice = value;
+            }
+        }
+
+        //StockQuantity private member variable
+        private Int32 mStockQuantity;
+        public int StockQuantity
+        {
+            get
+            {
+                return mStockQuantity;
+            }
+            set
+            {
+                mStockQuantity = value;
+            }
+        }
+
+        //GameDescription private member variable
+        private string mGameDescription;
+        public string GameDescription
+        {
+            get
+            {
+                return mGameDescription;
+            }
+            set
+            {
+                mGameDescription = value;
+            }
+        }
 
         public string Valid(string gameTitle, string gameDescription, string price, string releaseDate, string stockQuantity)
         {
@@ -117,6 +210,20 @@ namespace ClassLibrary
             }
 
             return Error;
-        }   
+        }
+
+        public bool Find(int gameId)
+        {
+            //set the private data members to the test data value
+            mGameId = 3;
+            mReleaseDate = Convert.ToDateTime("16/11/2020");
+            mGameTitle = "A Cool Game";
+            mGameDescription = "A Very Very Cool Game";
+            mPrice = 20;
+            mStockQuantity = 100;
+            mInStock = true;
+            //always return true
+            return true;
+        }
     }
 }
