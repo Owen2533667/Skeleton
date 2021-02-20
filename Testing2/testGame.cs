@@ -489,5 +489,120 @@ namespace Testing2
 
         }
 
+        [TestMethod]
+        public void FindMethodOk()
+        {
+            clsGame AGame = new clsGame();
+            Boolean Found = false;
+            Int32 GameId = 2;
+            Found = AGame.Find(GameId);
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+        public void TestGameIdFound()
+        {
+            clsGame AGame = new clsGame();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 GameId = 3;
+            Found = AGame.Find(GameId);
+            if (AGame.GameId != 3)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestReleaseDateFound()
+        {
+            clsGame AGame = new clsGame();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 GameId = 3;
+            Found = AGame.Find(GameId);
+            if (AGame.ReleaseDate != Convert.ToDateTime("16/11/2020"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestGameTitleFound()
+        {
+            clsGame AGame = new clsGame();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 GameId = 3;
+            Found = AGame.Find(GameId);
+            if (AGame.GameTitle != "A Cool Game")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestGameDescriptionFound()
+        {
+            clsGame AGame = new clsGame();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 GameId = 3;
+            Found = AGame.Find(GameId);
+            if (AGame.GameDescription != "A Very Very Cool Game")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStockQuantityFound()
+        {
+            clsGame AGame = new clsGame();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 GameId = 3;
+            Found = AGame.Find(GameId);
+            if (AGame.StockQuantity != 100)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestInStockFound()
+        {
+            clsGame AGame = new clsGame();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 GameId = 3;
+            Found = AGame.Find(GameId);
+            if (AGame.InStock != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestPriceFound()
+        {
+            clsGame AGame = new clsGame();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 GameId = 3;
+            Found = AGame.Find(GameId);
+            if (AGame.Price != 20)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }
