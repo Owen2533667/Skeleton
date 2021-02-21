@@ -523,7 +523,7 @@ namespace Testing2
             Boolean OK = true;
             Int32 GameId = 3;
             Found = AGame.Find(GameId);
-            if (AGame.ReleaseDate != Convert.ToDateTime("16/11/2020"))
+            if (AGame.ReleaseDate != Convert.ToDateTime("12/11/2020"))
             {
                 OK = false;
             }
@@ -538,7 +538,7 @@ namespace Testing2
             Boolean OK = true;
             Int32 GameId = 3;
             Found = AGame.Find(GameId);
-            if (AGame.GameTitle != "A Cool Game")
+            if (AGame.GameTitle != "MARVEL'S SPIDER-MAN: MILES MORALES")
             {
                 OK = false;
             }
@@ -553,7 +553,7 @@ namespace Testing2
             Boolean OK = true;
             Int32 GameId = 3;
             Found = AGame.Find(GameId);
-            if (AGame.GameDescription != "A Very Very Cool Game")
+            if (AGame.GameDescription != "Miles Morales discovers explosive powers that set him apart from his mentor, Peter Parker. Master his unique, bio-electric venom blast attacks and covert camouflage power alongside spectacular web-slinging acrobatics, gadgets and skills.")
             {
                 OK = false;
             }
@@ -568,7 +568,7 @@ namespace Testing2
             Boolean OK = true;
             Int32 GameId = 3;
             Found = AGame.Find(GameId);
-            if (AGame.StockQuantity != 100)
+            if (AGame.StockQuantity != 1000)
             {
                 OK = false;
             }
@@ -598,7 +598,7 @@ namespace Testing2
             Boolean OK = true;
             Int32 GameId = 3;
             Found = AGame.Find(GameId);
-            if (AGame.Price != 20)
+            if (AGame.Price != Convert.ToDecimal(51.99))
             {
                 OK = false;
             }
