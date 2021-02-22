@@ -16,21 +16,61 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOk_Click(object sender, EventArgs e)
     {
         //create a new instance of clsGame
-        clsGame AnGame = new clsGame();
-        //capture the game Id
-        AnGame.GameId = Convert.ToInt32(txtGameId.Text);
-        AnGame.GameTitle = txtGameTitle.Text;
-        AnGame.GameDescription = txtGameDescription.Text;
-        AnGame.ReleaseDate = Convert.ToDateTime(txtReleaseDate.Text).Date;
-        AnGame.Price = Convert.ToDecimal(txtPrice.Text);
-        AnGame.StockQuantity = Convert.ToInt32(txtStockQuantity.Text);
-        AnGame.InStock = Convert.ToBoolean(chkInStock.Enabled);
-        //store the attributes in the session object
-        Session["AnGame"] = AnGame;
- 
-        //Navigates to the viewer page
-        Response.Redirect("StockViewer.aspx");
+        clsGame AGame = new clsGame();
+        string GameId = txtGameId.Text;
+        string GameTitle = txtGameTitle.Text;
+        string GameDescription = txtGameDescription.Text;
+        string ReleaseDate = txtReleaseDate.Text;
+        string Price = txtPrice.Text;
+        string StockQuantity = txtStockQuantity.Text;
+        string Error = "";
+        //Validate the data
+        Error = AGame.Valid(GameId, GameTitle, GameDescription, Price, ReleaseDate, StockQuantity);
 
-        
+        if (Error == "")
+        {
+            //capture the game Id
+            AGame.GameId = Convert.ToInt32(txtGameId.Text);
+            AGame.GameTitle = txtGameTitle.Text;
+            AGame.GameDescription = txtGameDescription.Text;
+            AGame.ReleaseDate = Convert.ToDateTime(txtReleaseDate.Text).Date;
+            AGame.Price = Convert.ToDecimal(txtPrice.Text);
+            AGame.StockQuantity = Convert.ToInt32(txtStockQuantity.Text);
+            AGame.InStock = Convert.ToBoolean(chkInStock.Enabled);
+            //store the attributes in the session object
+            Session["AGame"] = AGame;
+            //redirects to the viewer page
+            Response.Redirect("StockViewer.aspx");
+        }
+        else
+        {
+            //Display the error message
+            lblError.Text = Error;
+        }
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the game class
+        clsGame AGame = new clsGame();
+        //variable to store the primary key
+        Int32 GameId;
+        //variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        GameId = Convert.ToInt32(txtGameId.Text);
+        //find the record
+        Found = AGame.Find(GameId);
+        if (Found == true)
+        {
+            //display the values of the properties in the form
+            txtGameId.Text = AGame.GameId.ToString();
+            txtGameTitle.Text = AGame.GameTitle;
+            txtGameDescription.Text = AGame.GameDescription;
+            txtReleaseDate.Text = AGame.ReleaseDate.ToString();
+            txtPrice.Text = AGame.Price.ToString();
+            txtStockQuantity.Text = AGame.StockQuantity.ToString();
+
+        }
     }
 }

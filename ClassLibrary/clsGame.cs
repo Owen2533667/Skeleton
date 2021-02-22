@@ -105,7 +105,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string gameTitle, string gameDescription, string price, string releaseDate, string stockQuantity)
+        public string Valid(string gameId, string gameTitle, string gameDescription, string price, string releaseDate, string stockQuantity)
         {
             //Create a string variable to store the error
             string Error = "";
@@ -140,6 +140,28 @@ namespace ClassLibrary
                 //Assigns message to Error variable
                 Error = Error + "The Game description may not be over 100000 characters : ";
             }
+
+            try
+            {
+                //copy the GameId value to the IntTemp variable
+                IntTemp = Convert.ToInt32(gameId);
+                if (IntTemp < 0)
+                {
+                    //Assigns message to Error variable
+                    Error = Error + "Game Id can not be lower than zero : ";
+                } 
+                if (IntTemp > Int32.MaxValue)
+                {
+                    //Assigns message to Error variable
+                    Error = Error + "You have exceeded the max interger value : ";
+                }
+            }
+            catch
+            {
+                //Assigns message to Error variable
+                Error = Error + "This is not a valid Game Id - It has to be a interger : ";
+            }
+
             try
             {
                 //copy the releaseDate value to the dateTemp variable
