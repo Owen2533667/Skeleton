@@ -6,10 +6,11 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
+<body style="height: 429px">
     <form id="form1" runat="server">
         <div>
         </div>
+        <asp:ListBox ID="lstGamesList" runat="server" style="z-index: 1; left: 10px; top: 34px; position: absolute; height: 388px; width: 422px"></asp:ListBox>
     </form>
 </body>
 </html>
