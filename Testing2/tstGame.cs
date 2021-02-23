@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Testing2
 {
     [TestClass]
-    public class testGame
+    public class tstGame
     {
         //Good test data
         // create some test data to pass to the method
