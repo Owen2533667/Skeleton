@@ -17,6 +17,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsGame
         clsGame AGame = new clsGame();
+        //capture the data for each field
         string GameId = txtGameId.Text;
         string GameTitle = txtGameTitle.Text;
         string GameDescription = txtGameDescription.Text;
@@ -36,11 +37,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AGame.ReleaseDate = Convert.ToDateTime(txtReleaseDate.Text).Date;
             AGame.Price = Convert.ToDecimal(txtPrice.Text);
             AGame.StockQuantity = Convert.ToInt32(txtStockQuantity.Text);
-            AGame.InStock = Convert.ToBoolean(chkInStock.Enabled);
+            AGame.InStock = chkInStock.Checked;
+            //create a new instance of the game collection
+            clsGameCollection GameList = new clsGameCollection();
+            //set the ThisGame property
+            GameList.ThisGame = AGame;
+            //add the new record
+            GameList.Add();
+            //redirect back to the listpage
+            Response.Redirect("StockList.aspx");
+
             //store the attributes in the session object
-            Session["AGame"] = AGame;
+            //Session["AGame"] = AGame;
             //redirects to the viewer page
-            Response.Redirect("StockViewer.aspx");
+            //Response.Redirect("StockViewer.aspx");
         }
         else
         {
