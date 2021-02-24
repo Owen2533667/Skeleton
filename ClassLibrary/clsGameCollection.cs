@@ -7,6 +7,8 @@ namespace ClassLibrary
     {
         //private data member for the list
         List<clsGame> mGameList = new List<clsGame>();
+        //private data member thisGame
+        clsGame mThisGame = new clsGame();
 
         //Public property for the game list
         public List<clsGame> GameList
@@ -35,7 +37,20 @@ namespace ClassLibrary
 
             }
         }
-        public clsGame ThisGame { get; set; }
+        //public property for ThisGame
+        public clsGame ThisGame
+        {
+            get
+            {
+                //return the private data
+                return mThisGame;
+            }
+            set
+            {
+                //set the private data
+                mThisGame = value;
+            }
+        }
 
         //constructor for the class
         public clsGameCollection()
@@ -68,6 +83,22 @@ namespace ClassLibrary
                 //pont at the next record
                 Index++;
             }
+        }
+
+        public int Add()
+        {
+            //adds a new record to the database based on the values of ThisGame
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameter for the stored procedure
+            DB.AddParameter("@GameTitle", mThisGame.GameId);
+            DB.AddParameter("@GameDescription", mThisGame.GameDescription);
+            DB.AddParameter("@ReleaseDate", mThisGame.ReleaseDate);
+            DB.AddParameter("@Price", mThisGame.Price);
+            DB.AddParameter("@StockQuantity", mThisGame.StockQuantity);
+            DB.AddParameter("@InStock", mThisGame.InStock);
+            //execute the query returning the primary key value;
+            return DB.Execute("sproc_tblGames_Insert");
         }
     }
 }
