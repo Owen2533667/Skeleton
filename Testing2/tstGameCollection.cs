@@ -106,6 +106,43 @@ namespace Testing2
             Assert.AreEqual(AllGames.ThisGame, TestItem);
         }
 
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //Create an instance if the class we want to create
+            clsGameCollection AllGames = new clsGameCollection();
+            //Create the item of test data
+            clsGame TestItem = new clsGame();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //Set its properties
+            TestItem.GameTitle = "A Game Name";
+            TestItem.GameDescription = "A Game Description";
+            TestItem.ReleaseDate = DateTime.Now.Date;
+            TestItem.Price = 20;
+            TestItem.StockQuantity = 200;
+            TestItem.InStock = true;
+            //set ThisGame to the test data
+            AllGames.ThisGame = TestItem;
+            //add the record
+            PrimaryKey = AllGames.Add();
+            //set the primary key of the test data
+            TestItem.GameId = PrimaryKey;
+            //modify the test data
+            TestItem.GameTitle = "A Game new cool Name";
+            TestItem.GameDescription = "Description of a game new cool name";
+            TestItem.ReleaseDate = DateTime.Now.Date;
+            TestItem.Price = 60;
+            TestItem.StockQuantity = 2000;
+            TestItem.InStock = true;
+            //set the reord based on the new test data
+            AllGames.ThisGame = TestItem;
+            //update the record
+            AllGames.Update();
+            //find the record
+            AllGames.ThisGame.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllGames.ThisGame, TestItem);
+        }
     }
-
 }

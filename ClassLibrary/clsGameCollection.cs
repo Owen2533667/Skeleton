@@ -91,7 +91,7 @@ namespace ClassLibrary
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //set the parameter for the stored procedure
-            DB.AddParameter("@GameTitle", mThisGame.GameId);
+            DB.AddParameter("@GameTitle", mThisGame.GameTitle);
             DB.AddParameter("@GameDescription", mThisGame.GameDescription);
             DB.AddParameter("@ReleaseDate", mThisGame.ReleaseDate);
             DB.AddParameter("@Price", mThisGame.Price);
@@ -99,6 +99,23 @@ namespace ClassLibrary
             DB.AddParameter("@InStock", mThisGame.InStock);
             //execute the query returning the primary key value;
             return DB.Execute("sproc_tblGames_Insert");
+        }
+
+        public void Update()
+        {
+            //Update an existing record based on the value of thisGame
+            //conenct to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@GameId", mThisGame.GameId);
+            DB.AddParameter("@GameTitle", mThisGame.GameTitle);
+            DB.AddParameter("@GameDescription", mThisGame.GameDescription);
+            DB.AddParameter("@ReleaseDate", mThisGame.ReleaseDate);
+            DB.AddParameter("@Price", mThisGame.Price);
+            DB.AddParameter("@StockQuantity", mThisGame.StockQuantity);
+            DB.AddParameter("@InStock", mThisGame.InStock);
+            //Execute the stored procedure
+            DB.Execute("sproc_tblGames_Update");
         }
     }
 }

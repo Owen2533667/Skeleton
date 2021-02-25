@@ -8,9 +8,21 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 GameId;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //get the number of the game to be processed
+        GameId = Convert.ToInt32(Session["GameId"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (GameId != -1)
+            {
+                //display the current data for the record
+                DisplayGame();
+            }
+        }
     }
 
     protected void btnOk_Click(object sender, EventArgs e)
@@ -40,13 +52,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AGame.InStock = chkInStock.Checked;
             //create a new instance of the game collection
             clsGameCollection GameList = new clsGameCollection();
-            //set the ThisGame property
-            GameList.ThisGame = AGame;
-            //add the new record
-            GameList.Add();
+
+            //if this is a new record i.e. GameId = -1 then add the data
+            if (this.GameId == -1)
+            {
+                //set the ThisGame property
+                GameList.ThisGame = AGame;
+                //add the new record
+                GameList.Add();
+            }
+            //Otherwise it must be an update
+            else
+            {
+                //find the record to update
+                GameList.ThisGame.Find(Convert.ToInt32(GameId));
+                //set the ThisGame property
+                GameList.ThisGame = AGame;
+                //update the record
+                GameList.Update();
+            }
             //redirect back to the listpage
             Response.Redirect("StockList.aspx");
-
             //store the attributes in the session object
             //Session["AGame"] = AGame;
             //redirects to the viewer page
@@ -82,5 +108,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtStockQuantity.Text = AGame.StockQuantity.ToString();
 
         }
+    }
+
+    void DisplayGame()
+    {
+        //create an instance of the game collection
+        clsGameCollection GameCollecion = new clsGameCollection();
+        //find the record to update
+        GameCollecion.ThisGame.Find(GameId);
+        //display the data for this record
+        txtGameId.Text = GameCollecion.ThisGame.GameId.ToString();
+        txtGameTitle.Text = GameCollecion.ThisGame.GameTitle;
+        txtGameDescription.Text = GameCollecion.ThisGame.GameDescription;
+        txtReleaseDate.Text = GameCollecion.ThisGame.ReleaseDate.ToString();
+        txtPrice.Text = GameCollecion.ThisGame.Price.ToString();
+        txtStockQuantity.Text = GameCollecion.ThisGame.StockQuantity.ToString();
     }
 }
