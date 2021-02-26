@@ -44,7 +44,28 @@ public partial class _1_List : System.Web.UI.Page
     }
 
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //var to store the primary key value of the record to be deleted
+        Int32 GameId;
+        //if a record has been selected from the list
+        if (lstGamesList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to delete
+            GameId = Convert.ToInt32(lstGamesList.SelectedValue);
+            //store the data in the session object
+            Session["GameId"] = GameId;
+            //Redirect to StockConfirmDelete.aspx
+            Response.Redirect("StockConfirmDelete.aspx");
+        }
+        else //if no record has been selected
+        {
+            //display error
+            lblError.Text = "Please select a record to delete from the list";
+        }
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
     {
         //var to store the primary key va;ue of the record to be edited
         Int32 GameId;
