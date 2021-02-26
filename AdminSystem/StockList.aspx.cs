@@ -85,5 +85,35 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record to edit from the list";
         }
     }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        //create an instance of the game collection
+        clsGameCollection Games = new clsGameCollection();
+        Games.ReportByGameTitle(txtFilter.Text);
+        lstGamesList.DataSource = Games.GameList;
+        //set the name of the primary key
+        lstGamesList.DataValueField = "GameId";
+        //set the name of the field to display
+        lstGamesList.DataTextField = "GameTitle";
+        //bind the data to the list
+        lstGamesList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        //create an instance of the game collection
+        clsGameCollection Games = new clsGameCollection();
+        Games.ReportByGameTitle("");
+        //clear any existing filter to tidy up the interface
+        txtFilter.Text = "";
+        lstGamesList.DataSource = Games.GameList;
+        //set the name of the primary key
+        lstGamesList.DataValueField = "GameId";
+        //set the name of the field to display
+        lstGamesList.DataTextField = "GameTitle";
+        //bind the data to the list
+        lstGamesList.DataBind();
+    }
 }
 
