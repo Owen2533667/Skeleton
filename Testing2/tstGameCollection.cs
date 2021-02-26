@@ -172,9 +172,33 @@ namespace Testing2
             //delete the record
             AllGames.Delete();
             //now find the record
-            Boolean Found = AllGames.ThisGame.find(PrimaryKey);
+            Boolean Found = AllGames.ThisGame.Find(PrimaryKey);
             //test to see that the two values are the same
             Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByGameTitleOK()
+        {
+            //create an instance of class containing unfiltered results
+            clsGameCollection AllGames = new clsGameCollection();
+            //create an instance of the filtered data
+            clsGameCollection FilteredGames = new clsGameCollection();
+            //apply a blank string (should return all records)
+            FilteredGames.ReportByGameTitle("");
+            //test to see that the two values are the same
+            Assert.AreEqual(AllGames.Count, FilteredGames.Count);
+        }
+
+        [TestMethod]
+        public void ReportByGameTitleNoneFound()
+        {
+            //create an instance of the filtered data
+            clsGameCollection FilteredGames = new clsGameCollection();
+            //apply a game title that doesn't exist
+            FilteredGames.ReportByGameTitle("xxxxxxxxxxxx");
+            //test to see that the two values are the same
+            Assert.AreEqual(0, FilteredGames.Count);
         }
     }
 }
