@@ -124,4 +124,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtPrice.Text = GameCollecion.ThisGame.Price.ToString();
         txtStockQuantity.Text = GameCollecion.ThisGame.StockQuantity.ToString();
     }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("StockList.aspx");
+    }
 }
