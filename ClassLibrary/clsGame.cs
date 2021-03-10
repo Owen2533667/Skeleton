@@ -105,6 +105,8 @@ namespace ClassLibrary
             }
         }
 
+        public string Description { get; set; }
+
         public string Valid(string gameId, string gameTitle, string gameDescription, string price, string releaseDate, string stockQuantity)
         {
             //Create a string variable to store the error
