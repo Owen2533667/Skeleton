@@ -2,9 +2,10 @@
 
 namespace ClassLibrary
 {
-    public class ClsGame
+    public class clsSupplier
     {
         public string Description { get; set; }
+        public DateTime DateAdded { get; set; }
 
         public string Valid(string mDescription)
         {
