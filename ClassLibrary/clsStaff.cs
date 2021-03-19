@@ -4,118 +4,108 @@ namespace ClassLibrary
 {
     public class clsStaff
     {
-        private DateTime mEmploymentDate;
-        private string mStaffAddress;
-        private string mStaffName;
+        //private data member for the Name property
+        private string mName;
+        public string Name  
+            {
+                get
+                {
+                    return mName;
+                }
+                set
+                {
+                    mName = value;
+                }
+      }
         private int mStaffNO;
-        private Boolean mStaffGender;
-        public string StaffName
+        public int StaffNO
         {
-            get
-
-            {
-                return mStaffName;
-            }
-            set
-            {
-                mStaffName = value;
-            }
-        }
-        public string staffAddress
-        {
-            get
-            {
-                return mStaffAddress;
-
-            }
-            set
-            {
-                mStaffAddress = value;
-            }
-        }
-        public Int32 StaffNO
+                get
+                {
+                    return mStaffNO;
+                }
+                set
+                {
+                    mStaffNO = value;
+                }
+      }
+        private string mAddress;
+          public string Address
         {
             get
             {
-                return mStaffNO;
+                return mAddress;
             }
             set
             {
-                mStaffNO = value;
+                mAddress = value;
             }
         }
+        private DateTime mEmploymentDate;
         public DateTime EmploymentDate
         {
+                get
+                {
+                    return mEmploymentDate;
+                }
+                set
+                {
+                    mEmploymentDate = value;
+                }
+             }
+        private decimal mSalary;
+        public decimal Salary
+        {
             get
             {
-                return mEmploymentDate;
+                return mSalary;
             }
             set
             {
-                mEmploymentDate = value;
+                mSalary = value;
             }
-            
+        }
+        private DateTime mDOB;
+        public DateTime DOB
+        {
+            get
+            {
+                return mDOB;
+            }
+            set
+            {
+                mDOB = value;
+            }
+        }
+        private Boolean mGender;
+        public Boolean Gender
+        {
+            get
+            {
+                return mGender;
+            }
+            set
+            {
+                mGender = value;
+            }
         }
 
-        public string Valid(string staffName, string staffAddress, string employmentDate, string staffNo)
+        public bool Find(string Name)
         {
-            string Error = "";
-            DateTime DateTemp;
-            int IntTemp;
-
-
-            if (staffName.Length < 1)
-            {
-                Error = Error + "Staff Name cannot be left blank";
-            }
-            if (mStaffName.Length > 50)
-            {
-                Error = Error + " Name is greater than 50 characters";
-            }
-            if (staffAddress.Length < 1)
-            {
-                Error = Error + "invalid StaffAddress";
-            }
-            if (staffAddress.Length > 50)
-            {
-                Error = Error + "the The Staff Address can not be greater than 50 characters"
-            }
-
-            try
-            {
-                IntTemp = Convert.ToInt32(staffNo);
-                if (IntTemp < 0)
-                {
-                    Error = Error + "Staff Nuumber can not ne lower than ZERO!";
-                }
-                if (IntTemp > Int32.MaxValue)
-                {
-                    Error = Error + "Max integer Value has been Exceeded";
-                }
-            }
-            catch
-            {
-                Error = Error + "not a valid Staff Number";
-            }
-            try
-            {
-                DateTemp = Convert.ToDateTime(employmentDate);
-                if (DateTemp < DateTime.Now.Date.AddYears(-50))
-                {
-                    Error = Error + "no staff member was added 50 years ago ";
-                }
-                if (DateTemp > DateTime.Now.Date)
-                {
-                    Error = Error + " Staff members cannot be addd in the future";
-                }
-            }
-            catch
-            {
-                Error = Error + "invalid Date";
-            }
-            return Error;
+            //set the private data members to the test data value
+            mName = "Michael";
+            mEmploymentDate = Convert.ToDateTime("21/03/2020");
+            mDOB = Convert.ToDateTime("30/03/1999");
+            mAddress = "Test Address";
+            mStaffNO = 3456;
+            mSalary = 5000000;
+            mGender = true;
+            //always true
+            return true;
         }
     }
 }
+    
+
        
     
