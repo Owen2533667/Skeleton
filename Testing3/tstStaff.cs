@@ -1,3 +1,5 @@
+
+using System;
 ﻿using System;
 
 using ClassLibrary;
@@ -111,7 +113,7 @@ namespace Testing3
             // Bollean variable to store the results of the validation
             Boolean Found = false;
             //create test data
-            string Name= "Michael";
+            string Name = "Michael";
             // invoke find method
             Found = aStaff.Find(Name);
             //test to see if the result is true
@@ -251,7 +253,7 @@ namespace Testing3
             String Name = "Michael";
             // invoke find method
             Found = aStaff.Find(Name);
-            if (aStaff.Gender != true )
+            if (aStaff.Gender != true)
             {
                 OK = false;
             }
@@ -259,7 +261,7 @@ namespace Testing3
             Assert.IsTrue(OK);
         }
     }
-    
+
 }
 
 
