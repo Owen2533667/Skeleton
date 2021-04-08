@@ -8,6 +8,8 @@ namespace Testing5
     public class TstGameSupplier
     {
         private string mDescription = "Description";
+        private string mSupplier;
+
         [TestMethod]
         public void InstanceOk()
         {
@@ -24,6 +26,32 @@ namespace Testing5
             Assert.AreEqual(Agame.Description, TestData);
         }
 
+        public void SupplierName()
+        {
+            //create an instance of the class we want to create
+            clsSupplier Agame = new clsSupplier();
+            //create some test data to assign to the property
+            string TestData = mSupplier;
+            //assign the data to the property
+            Agame.SupplierName = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(Agame.SupplierName, TestData);
+        }
+
+        [TestMethod]
+        public void Price()
+        {
+            //create an instance of the class we want to create
+            clsSupplier Agame = new clsSupplier();
+            //create some test data to assign to the property
+            Int32 TestData = 1;
+            //assign the data to the property
+            clsSupplier.Priceno = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(clsSupplier.Priceno, TestData);
+        }
+
+               
         [TestMethod]
         public void ReleaseDate()
         {
@@ -36,6 +64,8 @@ namespace Testing5
             //test to see that the two values are the same
             Assert.AreEqual(Agame.DateAdded, TestData);
         }
+
+
 
     }
 
