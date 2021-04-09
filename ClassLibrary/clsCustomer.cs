@@ -195,5 +195,17 @@ namespace ClassLibrary
 
             return Error;
         }
+
+        public bool Find(string CustomerNumber)
+        {
+            mCustomerNumber = "001";
+            mCustomerName = "Test Smith";
+            mCustomerEmail = "test@gmail.com";
+            mCustomerDOB = Convert.ToDateTime("26/06/1990");
+            mCustomerGender = "M";
+            mCustomerPostcode = "T35 755";
+
+            return true;
+        }
     }
 }

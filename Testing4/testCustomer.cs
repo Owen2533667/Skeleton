@@ -12,9 +12,99 @@ namespace TestingCustomer
         private string CustomerNumber = "123";
         private string CustomerName = "James Smith";
         private string CustomerEmail = "jamesmith@yahoo.co.uk";
-        private string CustomerDOB = DateTime.Now.Date.ToString();
+        private string CustomerDOB = Convert.ToDateTime("26/06/1990");
         private string CustomerGender = "M";
         private string CustomerPostcode = "LE29DW";
+
+        [TestMethod]
+        public void TestCustomerNumberFound()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            Boolean Found = false;
+            Bollean Ok = true;
+            string CustomerNumber = "001";
+            Found = AnCustomer.Find(CustomerNumber);
+            if (AnCustomer.CustomerName != "001")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestCustomerNameFound()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            Boolean Found = false;
+            Bollean Ok = true;
+            string CustomerNumber = "001";
+            Found = AnCustomer.Find(CustomerNumber);
+            if (AnCustomer.CustomerName != "Test Smith")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestCustomerEmailFound()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            Boolean Found = false;
+            Bollean Ok = true;
+            string CustomerNumber = "001";
+            Found = AnCustomer.Find(CustomerNumber);
+            if (AnCustomer.CustomerEmail != "test@gmail.com")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestCustomerDOBFound()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            Boolean Found = false;
+            Bollean Ok = true;
+            string CustomerNumber = "001";
+            Found = AnCustomer.Find(CustomerNumber);
+            if (AnCustomer.CustomerDOB != Convert.ToDateTime("26/06/1990"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestCustomerGenderFound()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            Boolean Found = false;
+            Bollean Ok = true;
+            string CustomerNumber = "001";
+            Found = AnCustomer.Find(CustomerNumber);
+            if (AnCustomer.CustomerGender != "M")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        public void TestCustomerPostcodeFound()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            Boolean Found = false;
+            Bollean Ok = true;
+            string CustomerNumber = "001";
+            Found = AnCustomer.Find(CustomerNumber);
+            if (AnCustomer.CustomerPostcode != "T35 755")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
 
         [TestMethod]
         public void InstanceOK()
@@ -634,5 +724,14 @@ namespace TestingCustomer
         }
 
         // END OF CUSTOMER POSTCODE
+
+        public void FindMethodOK()
+        {
+            clsCustomer AnCustomer = new clsCustomer();
+            Boolean Found = false;
+            String CustomerName = "John Smith";
+            Found = AnCustomer.Find(CustomerName);
+            Assert.IsTrue(Found);
+        }
     }
 }
