@@ -5,9 +5,12 @@ namespace ClassLibrary
     public class clsSupplier
     {
         public static int Priceno { get; set; }
+        public static int SupplierNo { get; set; }
+        public static int StockQuantity { get; set; }
+        public static int InQuantity { get; set; }
+        public static string SupplierName { get; set; }
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
-        public string SupplierName { get; set; }
 
         public string Valid(string mDescription)
         {

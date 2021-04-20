@@ -8,7 +8,6 @@ namespace Testing5
     public class TstGameSupplier
     {
         private string mDescription = "Description";
-        private string mSupplier;
 
         [TestMethod]
         public void InstanceOk()
@@ -26,16 +25,28 @@ namespace Testing5
             Assert.AreEqual(Agame.Description, TestData);
         }
 
+        [TestMethod]
+        public void SupplierNoproperty()
+        {
+            //create an instance of the class we want to create
+            clsSupplier Agame = new clsSupplier();
+            //create some test data to assign to the property
+            Int32 TestData = 1;
+            //assign the data to the property
+            clsSupplier.SupplierNo = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(clsSupplier.SupplierNo, TestData);
+        }
         public void SupplierName()
         {
             //create an instance of the class we want to create
             clsSupplier Agame = new clsSupplier();
             //create some test data to assign to the property
-            string TestData = mSupplier;
+            string TestData = "James";
             //assign the data to the property
-            Agame.SupplierName = TestData;
+            clsSupplier.SupplierName = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(Agame.SupplierName, TestData);
+            Assert.AreEqual(clsSupplier.SupplierName, TestData);
         }
 
         [TestMethod]
@@ -51,7 +62,34 @@ namespace Testing5
             Assert.AreEqual(clsSupplier.Priceno, TestData);
         }
 
-               
+        [TestMethod]
+        public void StockQuantity()
+        {
+            //create an instance of the class we want to create
+            clsSupplier Agame = new clsSupplier();
+            //create some test data to assign to the property
+            Int32 TestData = 1;
+            //assign the data to the property
+            clsSupplier.StockQuantity = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(clsSupplier.StockQuantity, TestData);
+        }
+
+        [TestMethod]
+        public void InQuantity()
+        {
+            //create an instance of the class we want to create
+            clsSupplier Agame = new clsSupplier();
+            //create some test data to assign to the property
+            Int32 TestData = 1;
+            //assign the data to the property
+            clsSupplier.InQuantity = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(clsSupplier.InQuantity, TestData);
+        }
+
+
+
         [TestMethod]
         public void ReleaseDate()
         {
@@ -64,9 +102,6 @@ namespace Testing5
             //test to see that the two values are the same
             Assert.AreEqual(Agame.DateAdded, TestData);
         }
-
-
-
     }
 
     [TestMethod]
@@ -100,4 +135,3 @@ namespace Testing5
             Assert.AreNotEqual(Error, "");
         }
     }
-}
