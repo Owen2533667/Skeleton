@@ -436,8 +436,83 @@ namespace Testing1
             Assert.AreNotEqual(Error, "");
         }
 
+        [TestMethod]
+        public void FindMethodOk()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Int32 OrderNo = 25;
+            Found = AOrder.Find(OrderNo);
+            Assert.IsTrue(Found);
+        }
 
+        [TestMethod]
+        public void OrderNoFound()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderNo = 25;
+            Found = AOrder.Find(OrderNo);
+            if (AOrder.OrderNo != 25)
+            {
+                OK = false;
 
+            }
+            Assert.IsTrue(OK);
+        }
 
+        [TestMethod]
+        public void OrderPlacedFound()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderNo = 25;
+            Found = AOrder.Find(OrderNo);
+            if (AOrder.OrderPlaced != Convert.ToDateTime("16/04/2021"))
+            {
+                OK = false;
+
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void StaffIdFound()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderNo = 25;
+            Found = AOrder.Find(OrderNo);
+            if (AOrder.StaffId != 35)
+            {
+                OK = false;
+
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void ItemDescriptionFind()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderNo = 25;
+            Found = AOrder.Find(OrderNo);
+            if (AOrder.ItemDescription != "Game of the year")
+            {
+                OK = false;
+
+            }
+            Assert.IsTrue(OK);
+        }
     }
 }
+    
+
+    
+
+

@@ -4,13 +4,61 @@ namespace ClassLibrary
 {
     public class clsOrder
     {
+        //private data for the OderNo
+        private Int32 mOrderNo;
+        private DateTime mOrderPlaced;
+        private Int32 mStaffId;
+        private String mItemDescription;
 
 
-        public string ItemDescription { get; set; }
-        public DateTime OrderPlaced { get; set; }
+        public string ItemDescription
+        {
+            get
+            {
+                return mItemDescription;
+            }
+            set
+            {
+                mItemDescription = value;
+            }
+        }
+        public DateTime OrderPlaced
+        {
+            get
+            {
+                return mOrderPlaced;
+            }
+            set
+            {
+                mOrderPlaced = value;
+
+            }
+        }
         public string DeliveryAddress { get; set; }
-        public int StaffId { get; set; }
-        public int OrderNo { get; set; }
+        public int StaffId
+        {
+            get
+            {
+                return mStaffId;
+            }  
+            set
+            {
+                mStaffId = value;
+            }
+                
+        }
+        public Int32 OrderNo
+        {
+            get
+            {
+                return mOrderNo;
+
+            }
+            set
+            {
+                mOrderNo = value;
+            }
+        }
         public decimal ItemPrice { get; set; }
         public char ItemColour { get; set; }
         public bool ItemAvailability { get; set; }
@@ -74,6 +122,15 @@ namespace ClassLibrary
             {
                 return "";
             }
+        }
+
+        public bool Find(int orderNo)
+        {
+            mOrderNo = 25;
+            mOrderPlaced = Convert.ToDateTime("16/04/2021");
+            mStaffId = 35;
+            mItemDescription = "Game of the year";
+            return true;
         }
     }
 }
