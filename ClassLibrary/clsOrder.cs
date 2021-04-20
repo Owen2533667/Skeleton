@@ -9,6 +9,10 @@ namespace ClassLibrary
         private DateTime mOrderPlaced;
         private Int32 mStaffId;
         private String mItemDescription;
+        private char mItemColour;
+        private decimal mItemPrice;
+        private Boolean mItemAvailability;
+        private string mDeliveryAddress;
 
 
         public string ItemDescription
@@ -34,7 +38,17 @@ namespace ClassLibrary
 
             }
         }
-        public string DeliveryAddress { get; set; }
+        public string DeliveryAddress
+        {
+            get
+            {
+                return mDeliveryAddress;
+            }
+                set
+            {
+                mDeliveryAddress = value;
+            }
+        }
         public int StaffId
         {
             get
@@ -59,9 +73,39 @@ namespace ClassLibrary
                 mOrderNo = value;
             }
         }
-        public decimal ItemPrice { get; set; }
-        public char ItemColour { get; set; }
-        public bool ItemAvailability { get; set; }
+        public decimal ItemPrice
+        {
+            get
+            {
+                return mItemPrice;
+            }
+            set
+            {
+                mItemPrice = value;
+            }
+        }
+        public char ItemColour
+        {
+            get
+            {
+                return mItemColour;
+            }
+                set
+            {
+                mItemColour = value;
+            }
+        }
+        public bool ItemAvailability
+        {
+            get
+            {
+                return mItemAvailability;
+            }
+                set
+            {
+                mItemAvailability = value;
+            }
+        }
 
         public string Valid(int OrderNo, string ItemDescription, int StaffId, string DeliveryAddress, char ItemColour, DateTime OrderPlaced, bool ItemAvailability, decimal ItemPrice)
         {
@@ -126,11 +170,27 @@ namespace ClassLibrary
 
         public bool Find(int orderNo)
         {
-            mOrderNo = 25;
-            mOrderPlaced = Convert.ToDateTime("16/04/2021");
-            mStaffId = 35;
-            mItemDescription = "Game of the year";
-            return true;
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@OrderNo", OrderNo);
+            DB.Execute("sproc_tblOrderProcessing_FilterByOrderNo");
+            if (DB.Count == 1)
+            {
+                mDeliveryAddress = Convert.ToString(DB.DataTable.Rows[0]["DeliveryAddress"]);
+                mItemAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["ItemAvailability"]);
+                mItemPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["ItemPrice"]);
+                mItemColour = Convert.ToChar(DB.DataTable.Rows[0]["ItemColour"]);
+                mItemDescription = Convert.ToString(DB.DataTable.Rows[0]["ItemDescription"]);
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                mOrderPlaced = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderPlaced"]);
+                mOrderNo = Convert.ToInt32(DB.DataTable.Rows[0]["OrderNo"]);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+           
         }
     }
 }

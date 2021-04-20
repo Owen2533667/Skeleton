@@ -441,7 +441,7 @@ namespace Testing1
         {
             clsOrder AOrder = new clsOrder();
             Boolean Found = false;
-            Int32 OrderNo = 25;
+            Int32 OrderNo = 5;
             Found = AOrder.Find(OrderNo);
             Assert.IsTrue(Found);
         }
@@ -452,9 +452,9 @@ namespace Testing1
             clsOrder AOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderNo = 25;
+            Int32 OrderNo = 5;
             Found = AOrder.Find(OrderNo);
-            if (AOrder.OrderNo != 25)
+            if (AOrder.OrderNo != 5)
             {
                 OK = false;
 
@@ -468,9 +468,9 @@ namespace Testing1
             clsOrder AOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderNo = 25;
+            Int32 OrderNo = 5;
             Found = AOrder.Find(OrderNo);
-            if (AOrder.OrderPlaced != Convert.ToDateTime("16/04/2021"))
+            if (AOrder.OrderPlaced != Convert.ToDateTime("18/04/2021"))
             {
                 OK = false;
 
@@ -484,9 +484,9 @@ namespace Testing1
             clsOrder AOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderNo = 25;
+            Int32 OrderNo = 5;
             Found = AOrder.Find(OrderNo);
-            if (AOrder.StaffId != 35)
+            if (AOrder.StaffId != 125)
             {
                 OK = false;
 
@@ -500,9 +500,73 @@ namespace Testing1
             clsOrder AOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderNo = 25;
+            Int32 OrderNo = 5;
             Found = AOrder.Find(OrderNo);
-            if (AOrder.ItemDescription != "Game of the year")
+            if (AOrder.ItemDescription != "Multiplayer minigames max 10 people ")
+            {
+                OK = false;
+
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void ItemColourFind()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderNo = 5;
+            Found = AOrder.Find(OrderNo);
+            if (AOrder.ItemColour != 'O')
+            {
+                OK = false;
+
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void ItemPriceFind()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderNo = 5;
+            Found = AOrder.Find(OrderNo);
+            if (AOrder.ItemPrice != 12)
+            {
+                OK = false;
+
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void ItemAvailabilityFind()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderNo = 5;
+            Found = AOrder.Find(OrderNo);
+            if (AOrder.ItemAvailability != true)
+            {
+                OK = false;
+
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void DeliveryAddressFind()
+        {
+            clsOrder AOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderNo = 5;
+            Found = AOrder.Find(OrderNo);
+            if (AOrder.DeliveryAddress != "FK17 8AJ")
             {
                 OK = false;
 
