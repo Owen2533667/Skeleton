@@ -12,6 +12,7 @@
             <br />
             <asp:Label ID="lblCustomerNumber" runat="server" Text="Customer Number"></asp:Label>
 &nbsp;<asp:TextBox ID="txtCustomerNumber" runat="server"></asp:TextBox>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
             <br />
             <asp:Label ID="lblCustomerName" runat="server" Text="Name" width="113px"></asp:Label>
             <asp:TextBox ID="txtCustomerName" runat="server"></asp:TextBox>
@@ -26,7 +27,7 @@
             <asp:TextBox ID="txtCustomerGender" runat="server"></asp:TextBox>
             <br />
             <asp:Label ID="lblCustomerPostcode" runat="server" Text="Postcode" width="113px"></asp:Label>
-            <asp:TextBox ID="txtPostcode" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtCustomerPostcode" runat="server"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="lblError" runat="server"></asp:Label>
