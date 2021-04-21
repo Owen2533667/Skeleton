@@ -7,8 +7,8 @@ namespace ClassLibrary
         public string Description { get; set; }
 
         // CustomerNumber private member variable
-        private string mCustomerNumber;
-        public string CustomerNumber
+        private Int32 mCustomerNumber;
+        public Int32 CustomerNumber
         {
             get
             {
@@ -196,16 +196,25 @@ namespace ClassLibrary
             return Error;
         }
 
-        public bool Find(string CustomerNumber)
+        public bool Find(int CustomerNumber)
         {
-            mCustomerNumber = "001";
-            mCustomerName = "Test Smith";
-            mCustomerEmail = "test@gmail.com";
-            mCustomerDOB = Convert.ToDateTime("26/06/1990");
-            mCustomerGender = "M";
-            mCustomerPostcode = "T35 755";
-
-            return true;
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerNumber", CustomerNumber);
+            DB.Execute("sproc_tblCustomer_FilterByCustomerNumber");
+            if (DB.Count == 1)
+            {
+                mCustomerNumber = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerNumber"]);
+                mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
+                mCustomerEmail = Convert.ToString(DB.DataTable.Rows[0]["CustomerEmail"]);
+                mCustomerDOB = Convert.ToDateTime(DB.DataTable.Rows[0]["CustomerDOB"]);
+                mCustomerGender = Convert.ToString(DB.DataTable.Rows[0]["CustomerGender"]);
+                mCustomerPostcode = Convert.ToString(DB.DataTable.Rows[0]["CustomerPostcode"]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
