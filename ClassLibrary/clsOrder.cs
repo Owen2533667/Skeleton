@@ -44,7 +44,7 @@ namespace ClassLibrary
             {
                 return mDeliveryAddress;
             }
-                set
+            set
             {
                 mDeliveryAddress = value;
             }
@@ -54,12 +54,12 @@ namespace ClassLibrary
             get
             {
                 return mStaffId;
-            }  
+            }
             set
             {
                 mStaffId = value;
             }
-                
+
         }
         public Int32 OrderNo
         {
@@ -90,7 +90,7 @@ namespace ClassLibrary
             {
                 return mItemColour;
             }
-                set
+            set
             {
                 mItemColour = value;
             }
@@ -101,72 +101,202 @@ namespace ClassLibrary
             {
                 return mItemAvailability;
             }
-                set
+            set
             {
                 mItemAvailability = value;
             }
         }
 
-        public string Valid(int OrderNo, string ItemDescription, int StaffId, string DeliveryAddress, string ItemColour, DateTime OrderPlaced, bool ItemAvailability, decimal ItemPrice)
+
+        public string Valid(string orderNo, string itemDescription, string staffId, string deliveryAddress, string itemColour, string orderPlaced, string itemPrice)
+
         {
-            if (OrderNo < 1)
+
+            String Error = "";
+
+            DateTime OrderPlacedTemp;
+
+            Decimal ItemPriceTemp;
+
+            int OrderNoTemp;
+
+            int StaffIdTemp;
+
+
+
+            if (deliveryAddress.Length < 1)
+
             {
-                return "OrderNo cannot be < than 1";
-            }
-            else if (OrderNo > 50)
-            {
-                return "OrderNo cannot be < than 1"; 
+
+                Error = Error + " DeliveryAddress cannot be < than 1: ";
+
             }
 
-            else if (ItemDescription.Length < 1)
+            if (deliveryAddress.Length > 50)
+
             {
-                return "ItemDescription length cannot be < 0";
+
+                Error = Error + " DeliveryAddress cannot be > than 50: ";
+
             }
-            else if (ItemDescription.Length > 50)
+
+            if (itemDescription.Length < 1)
+
             {
-                return "ItemDescription length cannot be >50 chars";
+
+                Error = Error + "ItemDescription cannot be blank: ";
+
             }
-            else if (StaffId < 1)
+
+            if (itemDescription.Length > 50)
+
             {
-                return "StaffId cannot be <1";
+
+                Error = Error + " ItemDescription cannot exceed 50 chars:";
+
             }
-            else if (StaffId > 500)
+
+            if (itemColour.Length < 1)
+
             {
-                return "StaffId cannot be >500";
+
+                Error = Error + "Item Colour cannot be less than 1";
+
             }
-            else if (DeliveryAddress.Length < 1)
+
+            if (itemColour.Length > 20)
+
             {
-                return "DeliveryAddress cannot be blank";
+
+                Error = Error + "Item Colour cannot exceed 20 chars:";
+
             }
-            else if (DeliveryAddress.Length > 50)
+
+            try
+
             {
-                return "DeliveryAddress cannot be > 50 chars";
+
+                OrderPlacedTemp = Convert.ToDateTime(orderPlaced);
+
+                if (OrderPlacedTemp <= DateTime.Now.AddYears(-1).AddDays(-1))
+
+                {
+
+                    Error = Error + "OrderPlaced cannot be older than 1 year: ";
+
+                }
+
+                if (OrderPlacedTemp > DateTime.Now)
+
+                {
+
+                    Error = Error + "OrderPlaced cannot be after today: ";
+
+                }
+
             }
-            else if (ItemColour.Length < 1)
+
+            catch
+
             {
-                return "ItemColour cannot be empty";
+
+                Error = Error + "Invalid data for date: ";
+
             }
-            else if (OrderPlaced <= DateTime.Now.AddYears(-1).AddDays(-1))
+
+            try
+
             {
-                return "Orders which are older than 1 year are not processed";
+
+                ItemPriceTemp = Convert.ToDecimal(itemPrice);
+
+                if (ItemPriceTemp < 1)
+
+                {
+
+                    Error = Error + "Item Price cannot be less than 1: ";
+
+                }
+
+                if (ItemPriceTemp > 10000)
+
+                {
+
+                    Error = Error + "Item Price cannot be >10000: ";
+
+                }
+
             }
-            else if (OrderPlaced > DateTime.Now)
+
+            catch
+
             {
-                return "OrderPlaced cannot be in the future";
+
+                Error = Error + "Invalid data for Item Price: ";
+
             }
-            else if (ItemPrice < 1)
+
+
+
+            try
+
             {
-                return "ItemPrice can’t be < 1";
+
+                OrderNoTemp = Convert.ToInt32(orderNo);
+
+                if (OrderNoTemp < 1)
+
+                {
+
+                    Error = Error + "OrderNo cannot be less than 1: ";
+
+                }
+
+                if (OrderNoTemp > 50)
+
+                {
+
+                    Error = Error + "OrderNo cannot exceed number 50: ";
+
+                }
+
             }
-            else if (ItemPrice > 10000)
+
+            catch
+
             {
-                return "ItemPrice cannot be >10000";
+
+                Error = Error + "Invalid data for OrdeNo:";
+
             }
-            else
+
+
+
+            try
+
             {
-                return "";
+
+                StaffIdTemp = Convert.ToInt32(staffId);
+
+                if (StaffIdTemp < 1)
+
+                {
+                    Error = Error + "Staff ID cannot be less than 1: ";
+                }
+                if (StaffIdTemp > 500)
+                {
+                    Error = Error + "StaffId cannot exceed 500: ";
+                }
             }
+            catch
+            {
+                Error = Error + "Invalid data for Staff Id:";
+            }
+
+
+            return Error;
         }
+
 
         public bool Find(int OrderNo)
         {
@@ -183,7 +313,7 @@ namespace ClassLibrary
                 mItemDescription = Convert.ToString(DB.DataTable.Rows[0]["ItemDescription"]);
                 mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
                 mOrderPlaced = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderPlaced"]);
-               
+
 
                 return true;
             }
@@ -191,7 +321,7 @@ namespace ClassLibrary
             {
                 return false;
             }
-           
+
         }
     }
 }
