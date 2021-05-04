@@ -12,7 +12,7 @@ namespace Testing1
         private int OrderNo = 47;
         private int StaffId = 209;
         private DateTime OrderPlaced = DateTime.Now;
-        private char ItemColour = 'b';
+        private string ItemColour = "orange";
         private Boolean ItemAvailability = true;
         private string DeliveryAddress = "FK29 1LP 49 Street";
         private decimal ItemPrice = 3000;
@@ -97,7 +97,7 @@ namespace Testing1
         public void ItemColourOk()
         {
             clsOrder AOrder = new clsOrder();
-            char TestData = ItemColour;
+            string TestData = ItemColour;
             AOrder.ItemColour = TestData;
             Assert.AreEqual(AOrder.ItemColour, TestData);
 
@@ -274,7 +274,7 @@ namespace Testing1
         {
             clsOrder AOrder = new clsOrder();
             string Error = "";
-            char ItemColour = ' ';
+            string ItemColour = "";
             Error = AOrder.Valid(OrderNo, ItemDescription, StaffId, DeliveryAddress, ItemColour, OrderPlaced, ItemAvailability, ItemPrice);
             Assert.AreNotEqual(Error, "");
         }
@@ -518,7 +518,7 @@ namespace Testing1
             Boolean OK = true;
             Int32 OrderNo = 5;
             Found = AOrder.Find(OrderNo);
-            if (AOrder.ItemColour != 'O')
+            if (AOrder.ItemColour != "Orange")
             {
                 OK = false;
 

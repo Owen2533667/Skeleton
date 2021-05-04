@@ -9,7 +9,7 @@ namespace ClassLibrary
         private DateTime mOrderPlaced;
         private Int32 mStaffId;
         private String mItemDescription;
-        private char mItemColour;
+        private String mItemColour;
         private decimal mItemPrice;
         private Boolean mItemAvailability;
         private string mDeliveryAddress;
@@ -84,7 +84,7 @@ namespace ClassLibrary
                 mItemPrice = value;
             }
         }
-        public char ItemColour
+        public string ItemColour
         {
             get
             {
@@ -107,7 +107,7 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(int OrderNo, string ItemDescription, int StaffId, string DeliveryAddress, char ItemColour, DateTime OrderPlaced, bool ItemAvailability, decimal ItemPrice)
+        public string Valid(int OrderNo, string ItemDescription, int StaffId, string DeliveryAddress, string ItemColour, DateTime OrderPlaced, bool ItemAvailability, decimal ItemPrice)
         {
             if (OrderNo < 1)
             {
@@ -142,7 +142,7 @@ namespace ClassLibrary
             {
                 return "DeliveryAddress cannot be > 50 chars";
             }
-            else if (ItemColour == ' ')
+            else if (ItemColour.Length < 1)
             {
                 return "ItemColour cannot be empty";
             }
@@ -168,21 +168,22 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int orderNo)
+        public bool Find(int OrderNo)
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@OrderNo", OrderNo);
             DB.Execute("sproc_tblOrderProcessing_FilterByOrderNo");
             if (DB.Count == 1)
             {
+                mOrderNo = Convert.ToInt32(DB.DataTable.Rows[0]["OrderNo"]);
                 mDeliveryAddress = Convert.ToString(DB.DataTable.Rows[0]["DeliveryAddress"]);
                 mItemAvailability = Convert.ToBoolean(DB.DataTable.Rows[0]["ItemAvailability"]);
                 mItemPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["ItemPrice"]);
-                mItemColour = Convert.ToChar(DB.DataTable.Rows[0]["ItemColour"]);
+                mItemColour = Convert.ToString(DB.DataTable.Rows[0]["ItemColour"]);
                 mItemDescription = Convert.ToString(DB.DataTable.Rows[0]["ItemDescription"]);
                 mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
                 mOrderPlaced = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderPlaced"]);
-                mOrderNo = Convert.ToInt32(DB.DataTable.Rows[0]["OrderNo"]);
+               
 
                 return true;
             }
