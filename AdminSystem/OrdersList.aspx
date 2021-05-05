@@ -16,7 +16,7 @@
         <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
         <br />
         <br />
-        Enter a Customer Address
+        Enter Item Description
         <asp:TextBox ID="txtFilter" runat="server"></asp:TextBox>
         <br />
         <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" Text="Apply" />
