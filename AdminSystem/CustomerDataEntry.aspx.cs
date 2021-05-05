@@ -8,9 +8,17 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 CustomerNumber;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        CustomerNumber = Convert.ToInt32(Session["CustomerNumber"]);
+        if (IsPostBack == false)
+        {
+            if (CustomerNumber != -1)
+            {
+                DisplayCustomer();
+            }
+        }
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -27,13 +35,26 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = AnCustomer.Valid(CustomerNumber, CustomerName, CustomerEmail, CustomerDOB, CustomerGender, CustomerPostcode);
         if (Error == "")
         {
-            AnCustomer.CustomerNumber = Convert.ToInt32(CustomerNumber);
-            AnCustomer.CustomerName = CustomerName;
-            AnCustomer.CustomerEmail = CustomerEmail;
-            AnCustomer.CustomerDOB = Convert.ToDateTime(CustomerDOB);
-            AnCustomer.CustomerGender = CustomerGender;
-            AnCustomer.CustomerPostcode = CustomerPostcode;
-            Session["AnCustomer"] = AnCustomer;
+            AnCustomer.CustomerNumber = Convert.ToInt32(txtCustomerNumber.Text);
+            AnCustomer.CustomerName = txtCustomerName.Text;
+            AnCustomer.CustomerEmail = txtCustomerEmail.Text;
+            AnCustomer.CustomerDOB = Convert.ToDateTime(txtCustomerDOB.Text);
+            AnCustomer.CustomerGender = txtCustomerGender.Text;
+            AnCustomer.CustomerPostcode = txtCustomerPostcode.Text;
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+
+            if (this.CustomerNumber == -1)
+            {
+                CustomerList.ThisCustomer = AnCustomer;
+                CustomerList.Add();
+            }
+
+            else
+            {
+                CustomerList.ThisCustomer.Find(Convert.ToInt32(CustomerNumber));
+                CustomerList.ThisCustomer = AnCustomer;
+                CustomerList.Add();
+            }
             Response.Redirect("CustomerViewer.aspx");
         }
         else
@@ -57,5 +78,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtCustomerGender.Text = AnCustomer.CustomerGender;
             txtCustomerPostcode.Text = AnCustomer.CustomerPostcode;
         }
+    }
+
+    void DisplayCustomer()
+    {
+        clsCustomerCollection CustomerBook = new clsCustomerCollection();
+        CustomerBook.ThisCustomer.Find(CustomerNumber);
+        txtCustomerNumber.Text = CustomerBook.ThisCustomer.CustomerNumber.ToString();
+        txtCustomerName.Text = CustomerBook.ThisCustomer.CustomerName;
+        txtCustomerEmail.Text = CustomerBook.ThisCustomer.CustomerEmail;
+        txtCustomerDOB.Text = CustomerBook.ThisCustomer.CustomerDOB.ToString();
+        txtCustomerGender.Text = CustomerBook.ThisCustomer.CustomerGender;
+        txtCustomerPostcode.Text = CustomerBook.ThisCustomer.CustomerPostcode;
     }
 }

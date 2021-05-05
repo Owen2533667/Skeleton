@@ -12,7 +12,7 @@ namespace TestingCustomer
         private string CustomerNumber = "123";
         private string CustomerName = "James Smith";
         private string CustomerEmail = "jamesmith@yahoo.co.uk";
-        private string CustomerDOB = Convert.ToDateTime("26/06/1990");
+        private string CustomerDOB = ("26/06/1990");
         private string CustomerGender = "M";
         private string CustomerPostcode = "LE29DW";
 
@@ -21,10 +21,10 @@ namespace TestingCustomer
         {
             clsCustomer AnCustomer = new clsCustomer();
             Boolean Found = false;
-            Bollean Ok = true;
-            string CustomerNumber = "001";
+            Boolean OK = true;
+            int CustomerNumber = 1;
             Found = AnCustomer.Find(CustomerNumber);
-            if (AnCustomer.CustomerName != "001")
+            if (AnCustomer.CustomerNumber != 1)
             {
                 OK = false;
             }
@@ -36,8 +36,8 @@ namespace TestingCustomer
         {
             clsCustomer AnCustomer = new clsCustomer();
             Boolean Found = false;
-            Bollean Ok = true;
-            string CustomerNumber = "001";
+            Boolean OK = true;
+            int CustomerNumber = 1;
             Found = AnCustomer.Find(CustomerNumber);
             if (AnCustomer.CustomerName != "Test Smith")
             {
@@ -51,8 +51,8 @@ namespace TestingCustomer
         {
             clsCustomer AnCustomer = new clsCustomer();
             Boolean Found = false;
-            Bollean Ok = true;
-            string CustomerNumber = "001";
+            Boolean OK = true;
+            int CustomerNumber = 1;
             Found = AnCustomer.Find(CustomerNumber);
             if (AnCustomer.CustomerEmail != "test@gmail.com")
             {
@@ -66,8 +66,8 @@ namespace TestingCustomer
         {
             clsCustomer AnCustomer = new clsCustomer();
             Boolean Found = false;
-            Bollean Ok = true;
-            string CustomerNumber = "001";
+            Boolean OK = true;
+            int CustomerNumber = 1;
             Found = AnCustomer.Find(CustomerNumber);
             if (AnCustomer.CustomerDOB != Convert.ToDateTime("26/06/1990"))
             {
@@ -81,8 +81,8 @@ namespace TestingCustomer
         {
             clsCustomer AnCustomer = new clsCustomer();
             Boolean Found = false;
-            Bollean Ok = true;
-            string CustomerNumber = "001";
+            Boolean OK = true;
+            int CustomerNumber = 1;
             Found = AnCustomer.Find(CustomerNumber);
             if (AnCustomer.CustomerGender != "M")
             {
@@ -95,8 +95,8 @@ namespace TestingCustomer
         {
             clsCustomer AnCustomer = new clsCustomer();
             Boolean Found = false;
-            Bollean Ok = true;
-            string CustomerNumber = "001";
+            Boolean OK = true;
+            int CustomerNumber = 1;
             Found = AnCustomer.Find(CustomerNumber);
             if (AnCustomer.CustomerPostcode != "T35 755")
             {
@@ -117,7 +117,7 @@ namespace TestingCustomer
         public void CustomerNumberOK()
         {
             clsCustomer ACustomer = new clsCustomer();
-            var TestData = "123";
+            var TestData = 123;
             ACustomer.CustomerNumber = TestData;
             Assert.AreEqual(ACustomer.CustomerNumber, TestData);
         }
@@ -729,8 +729,8 @@ namespace TestingCustomer
         {
             clsCustomer AnCustomer = new clsCustomer();
             Boolean Found = false;
-            String CustomerName = "John Smith";
-            Found = AnCustomer.Find(CustomerName);
+            int CustomerNumber = 1;
+            Found = AnCustomer.Find(CustomerNumber);
             Assert.IsTrue(Found);
         }
     }
