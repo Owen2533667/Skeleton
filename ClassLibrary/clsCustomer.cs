@@ -205,10 +205,10 @@ namespace ClassLibrary
             {
                 mCustomerNumber = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerNumber"]);
                 mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
-                mCustomerEmail = Convert.ToString(DB.DataTable.Rows[0]["CustomerEmail"]);
-                mCustomerDOB = Convert.ToDateTime(DB.DataTable.Rows[0]["CustomerDOB"]);
-                mCustomerGender = Convert.ToString(DB.DataTable.Rows[0]["CustomerGender"]);
-                mCustomerPostcode = Convert.ToString(DB.DataTable.Rows[0]["CustomerPostcode"]);
+                mCustomerEmail = Convert.ToString(DB.DataTable.Rows[0]["email"]);
+                mCustomerDOB = Convert.ToDateTime(DB.DataTable.Rows[0]["DOB"]);
+                mCustomerGender = Convert.ToString(DB.DataTable.Rows[0]["Gender"]);
+                mCustomerPostcode = Convert.ToString(DB.DataTable.Rows[0]["Postcode"]);
                 return true;
             }
             else
